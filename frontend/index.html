@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Task Manager</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="auth-view" id="authView">
+        <div class="auth-copy">
+          <p class="eyebrow">Team Task Manager</p>
+          <h1>Manage projects and tasks in one clean workspace.</h1>
+          <p class="muted">Create projects, assign work, and track task progress with your MongoDB backend.</p>
+        </div>
+
+        <form class="auth-panel" id="authForm">
+          <div class="switcher" role="tablist" aria-label="Authentication mode">
+            <button class="switcher-button active" type="button" id="loginTab">Login</button>
+            <button class="switcher-button" type="button" id="signupTab">Signup</button>
+          </div>
+
+          <label class="field signup-only hidden">
+            <span>Name</span>
+            <input id="nameInput" type="text" autocomplete="name" placeholder="Aryan Admin">
+          </label>
+
+          <label class="field">
+            <span>Email</span>
+            <input id="emailInput" type="email" autocomplete="email" placeholder="admin@test.com" required>
+          </label>
+
+          <label class="field">
+            <span>Password</span>
+            <input id="passwordInput" type="password" autocomplete="current-password" placeholder="123456" required>
+          </label>
+
+          <label class="field signup-only hidden">
+            <span>Role</span>
+            <select id="roleInput">
+              <option value="admin">Admin</option>
+              <option value="member">Member</option>
+            </select>
+          </label>
+
+          <button class="primary-button" type="submit" id="authSubmit">Login</button>
+          <p class="message" id="authMessage" role="status"></p>
+        </form>
+      </section>
+
+      <section class="dashboard hidden" id="dashboardView">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Team Task Manager</p>
+            <h1>Dashboard</h1>
+          </div>
+          <div class="user-box">
+            <span id="userText"></span>
+            <button class="ghost-button" type="button" id="logoutButton">Logout</button>
+          </div>
+        </header>
+
+        <section class="stats-grid" aria-label="Task summary">
+          <article class="stat-card">
+            <span>Total Tasks</span>
+            <strong id="totalTasks">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>Todo</span>
+            <strong id="todoTasks">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>In Progress</span>
+            <strong id="progressTasks">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>Done</span>
+            <strong id="doneTasks">0</strong>
+          </article>
+          <article class="stat-card overdue-stat">
+            <span>Overdue</span>
+            <strong id="overdueTasks">0</strong>
+          </article>
+        </section>
+
+        <section class="work-grid admin-only">
+          <form class="panel" id="projectForm">
+            <div class="panel-heading">
+              <h2>New Project</h2>
+            </div>
+            <label class="field">
+              <span>Project name</span>
+              <input id="projectName" type="text" placeholder="College Project" required>
+            </label>
+            <label class="field">
+              <span>Description</span>
+              <textarea id="projectDescription" rows="4" placeholder="Final year team work"></textarea>
+            </label>
+            <label class="field">
+              <span>Team members</span>
+              <select id="projectMembers" multiple size="4"></select>
+            </label>
+            <button class="primary-button" type="submit">Create Project</button>
+          </form>
+
+          <form class="panel" id="taskForm">
+            <div class="panel-heading">
+              <h2>New Task</h2>
+            </div>
+            <div class="two-column">
+              <label class="field">
+                <span>Title</span>
+                <input id="taskTitle" type="text" placeholder="Create dashboard" required>
+              </label>
+              <label class="field">
+                <span>Project</span>
+                <select id="taskProject" required></select>
+              </label>
+            </div>
+            <label class="field">
+              <span>Assign to</span>
+              <select id="taskAssignee" required></select>
+            </label>
+            <label class="field">
+              <span>Description</span>
+              <textarea id="taskDescription" rows="3" placeholder="Build page layout and API connection"></textarea>
+            </label>
+            <div class="two-column">
+              <label class="field">
+                <span>Status</span>
+                <select id="taskStatus">
+                  <option value="todo">Todo</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="done">Done</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Due date</span>
+                <input id="taskDueDate" type="date">
+              </label>
+            </div>
+            <button class="primary-button" type="submit">Create Task</button>
+          </form>
+        </section>
+
+        <section class="content-grid">
+          <div class="list-section">
+            <div class="section-heading">
+              <h2>Projects</h2>
+              <button class="ghost-button" type="button" id="refreshButton">Refresh</button>
+            </div>
+            <div class="list" id="projectList"></div>
+          </div>
+
+          <div class="list-section">
+            <div class="section-heading">
+              <h2>Tasks</h2>
+            </div>
+            <div class="task-board" id="taskBoard"></div>
+          </div>
+        </section>
+
+        <section class="list-section admin-only team-section">
+          <div class="section-heading">
+            <h2>Team</h2>
+          </div>
+          <div class="list" id="userList"></div>
+        </section>
+
+        <p class="message" id="appMessage" role="status"></p>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
