@@ -92,5 +92,5 @@ npm start
 
 ## Submission
 
-- Live URL: Add your Railway URL here
-- GitHub repo: Add your GitHub repository URL here
+- Live URL: https://team-task-manager-production-11dd.up.railway.app
+- GitHub repo: https://github.com/aaryan0001/team-task-manager
